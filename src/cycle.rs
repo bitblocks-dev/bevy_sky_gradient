@@ -1,4 +1,5 @@
 use bevy::prelude::*;
+use bevy_ingame_clock::InGameClock;
 
 use crate::sky_material::FullSkyMaterial;
 
@@ -29,16 +30,20 @@ impl Plugin for SkyCyclePlugin {
 
 fn update_sky_time(
     mut sky_time: ResMut<SkyTime>,
-    time: Res<Time>,
-    sky_time_settings: Res<SkyTimeSettings>,
+    // time: Res<Time>,
+    ig_clock: Option<Res<InGameClock>>,
+    // sky_time_settings: Res<SkyTimeSettings>,
 ) {
     if !sky_time.auto_tick {
         return;
     }
-    sky_time.time += time.delta_secs();
-    if sky_time.time > sky_time_settings.total_time() {
-        sky_time.time -= sky_time_settings.total_time();
+    if let Some(clock) = ig_clock {
+        sky_time.time = clock.elapsed_seconds as f32 % clock.day_duration();
     }
+    // sky_time.time += time.delta_secs();
+    // if sky_time.time > sky_time_settings.total_time() {
+    //     sky_time.time -= sky_time_settings.total_time();
+    // }
 }
 
 // inform sky material the time!
