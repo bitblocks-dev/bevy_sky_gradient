@@ -226,7 +226,7 @@ impl Default for SkyPlugin {
 }
 
 /// attach to your main camera for the skybox to auto move to
-#[derive(Component)]
+#[derive(Component, Default)]
 pub struct SkyboxMagnetTag;
 
 fn spawn_default_skybox(
