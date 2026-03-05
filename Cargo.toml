@@ -36,6 +36,7 @@ bevy = {
         "reflect_functions",
         "serialize",
         "tonemapping_luts",
+        "zstd_rust",
     ]
 }
 bevy_ingame_clock = { git = "https://github.com/GuillaumeDelorme/bevy_ingame_clock", branch = "bevy-0.18-update" }
@@ -51,4 +52,3 @@ bincode = {version = "2", optional = true, features = ["serde"]}
 [dev-dependencies]
 rand = "0.9"
 bevy_flycam = "0.18"
-bevy-inspector-egui = "0.36"

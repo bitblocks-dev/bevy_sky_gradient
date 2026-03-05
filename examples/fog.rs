@@ -1,14 +1,9 @@
 use bevy::{
-    camera::visibility::RenderLayers,
     prelude::*,
     render::render_resource::{AsBindGroup, ShaderType},
     shader::ShaderRef,
 };
 use bevy_flycam::{FlyCam, NoCameraPlayerPlugin};
-use bevy_inspector_egui::{
-    bevy_egui::{EguiGlobalSettings, EguiPlugin, PrimaryEguiContext},
-    quick::WorldInspectorPlugin,
-};
 use bevy_sky_gradient::{plugin::GradientTextureHandle, prelude::*};
 use rand::Rng;
 
@@ -17,8 +12,7 @@ use rand::Rng;
 fn main() {
     App::new()
         .add_plugins(DefaultPlugins)
-        .add_systems(Startup, (setup, setup_egui_render_layer))
-        .add_plugins((EguiPlugin::default(), WorldInspectorPlugin::default()))
+        .add_systems(Startup, setup)
         .add_plugins(NoCameraPlayerPlugin)
         .add_plugins(MaterialPlugin::<FogMaterial>::default())
         .add_systems(Update, force_material_update)
@@ -111,26 +105,6 @@ impl Material for FogMaterial {
     fn fragment_shader() -> ShaderRef {
         "shaders/fog.wgsl".into()
     }
-}
-
-// egui by default renders into the first camera it finds.
-// which happends to be our AuroraCamera lmao.
-// this ensures egui doesn't render onto our aurora. disable for some fun :)
-fn setup_egui_render_layer(
-    mut commands: Commands,
-    mut egui_global_settings: ResMut<EguiGlobalSettings>,
-) {
-    egui_global_settings.auto_create_primary_context = false;
-    commands.spawn((
-        Name::new("camera_egui_fix"),
-        PrimaryEguiContext,
-        Camera3d::default(),
-        Camera {
-            order: 3,
-            ..default()
-        },
-        RenderLayers::none(),
-    ));
 }
 
 // HACK: BEVY acts weird
