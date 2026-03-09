@@ -17,25 +17,27 @@ serde = ["dep:serde", "dep:ron", "dep:bincode"]
 version = "0.18"
 default-features = false
 features = [
-    "bevy_winit",
-    "bevy_render",
-    "bevy_pbr",
-    "bevy_core_pipeline",
-    "bevy_camera",
-    "bevy_gizmos",
-    "bevy_gizmos_render",
-    "bevy_asset",
-    "bevy_gltf",
-    "bevy_log",
-    "bevy_sprite",
-    "bevy_text",
-    "reflect_auto_register",
-    "reflect_auto_register_static",
-    "reflect_documentation",
-    "reflect_functions",
-    "serialize",
-    "tonemapping_luts",
-    "zstd_rust",
+  "bevy_winit",
+  "bevy_render",
+  "bevy_pbr",
+  "bevy_core_pipeline",
+  "bevy_camera",
+  "bevy_gizmos",
+  "bevy_gizmos_render",
+  "bevy_asset",
+  "bevy_gltf",
+  "bevy_log",
+  "bevy_sprite",
+  "bevy_text",
+  "reflect_auto_register",
+  "reflect_auto_register_static",
+  "reflect_documentation",
+  "reflect_functions",
+  "serialize",
+  "tonemapping_luts",
+  "zstd_rust",
+  "x11",
+  "wayland",
 ]
 
 [dependencies]
@@ -43,11 +45,11 @@ bevy_ingame_clock = { git = "https://github.com/GuillaumeDelorme/bevy_ingame_clo
 thiserror = "2"
 
 # optional serialization
-serde = { version= "1", features = ["derive"], optional = true }
+serde = { version = "1", features = ["derive"], optional = true }
 # to serilalize user readable files
-ron = {version = "0.12", optional = true}
+ron = { version = "0.12", optional = true }
 # to serialize compact files
-bincode = {version = "2", optional = true, features = ["serde"]}
+bincode = { version = "2", optional = true, features = ["serde"] }
 
 [dev-dependencies]
 rand = "0.9"
