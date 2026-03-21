@@ -15,30 +15,30 @@ serde = ["dep:serde", "dep:ron", "dep:bincode"]
 
 [dependencies.bevy]
 version = "0.18"
-default-features = false
-features = [
-  "bevy_winit",
-  "bevy_render",
-  "bevy_pbr",
-  "bevy_core_pipeline",
-  "bevy_camera",
-  "bevy_gizmos",
-  "bevy_gizmos_render",
-  "bevy_asset",
-  "bevy_gltf",
-  "bevy_log",
-  "bevy_sprite",
-  "bevy_text",
-  "reflect_auto_register",
-  "reflect_auto_register_static",
-  "reflect_documentation",
-  "reflect_functions",
-  "serialize",
-  "tonemapping_luts",
-  "zstd_rust",
-  "x11",
-  "wayland",
-]
+# default-features = false
+# features = [
+#   "bevy_winit",
+#   "bevy_render",
+#   "bevy_pbr",
+#   "bevy_core_pipeline",
+#   "bevy_camera",
+#   "bevy_gizmos",
+#   "bevy_gizmos_render",
+#   "bevy_asset",
+#   "bevy_gltf",
+#   "bevy_log",
+#   "bevy_sprite",
+#   "bevy_text",
+#   "reflect_auto_register",
+#   "reflect_auto_register_static",
+#   "reflect_documentation",
+#   "reflect_functions",
+#   "serialize",
+#   "tonemapping_luts",
+#   "zstd_rust",
+#   "x11",
+#   "wayland",
+# ]
 
 [dependencies]
 bevy_ingame_clock = { git = "https://github.com/GuillaumeDelorme/bevy_ingame_clock", branch = "bevy-0.18-update" }
