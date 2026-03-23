@@ -32,14 +32,23 @@ fn update_sky_time(
     mut sky_time: ResMut<SkyTime>,
     // time: Res<Time>,
     ig_clock: Option<Res<InGameClock>>,
-    // sky_time_settings: Res<SkyTimeSettings>,
+    mut sky_time_settings: ResMut<SkyTimeSettings>,
 ) {
     if !sky_time.auto_tick {
         return;
     }
     if let Some(clock) = ig_clock {
         sky_time.time = clock.elapsed_seconds as f32 % clock.day_duration();
+
+        if sky_time_settings.day_time_sec == 1.0 {
+            let day_duration = clock.day_duration();
+            sky_time_settings.day_time_sec = day_duration * 0.45;
+            sky_time_settings.night_time_sec = day_duration * 0.45;
+            sky_time_settings.sunrise_time_sec = day_duration * 0.05;
+            sky_time_settings.sunset_time_sec = day_duration * 0.05;
+        }
     }
+
     // sky_time.time += time.delta_secs();
     // if sky_time.time > sky_time_settings.total_time() {
     //     sky_time.time -= sky_time_settings.total_time();
@@ -94,8 +103,8 @@ pub struct SkyTimeSettings {
 impl Default for SkyTimeSettings {
     fn default() -> Self {
         Self {
-            day_time_sec: 15.0,
-            night_time_sec: 25.0,
+            day_time_sec: 1.0,
+            night_time_sec: 1.0,
             sunrise_time_sec: 2.0,
             sunset_time_sec: 2.0,
         }
