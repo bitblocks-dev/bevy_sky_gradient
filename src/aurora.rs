@@ -1,15 +1,15 @@
+use crate::{
+    aurora_material::AuroraMaterial,
+    noise::{NoiseHandles, setup_noise_texture},
+    plugin::{AuroraTextureHandle, SkyboxMagnetTag, spawn_aurora_texture},
+    utils,
+};
 use bevy::{
     camera::{RenderTarget, visibility::RenderLayers},
     prelude::*,
     render::render_resource::Extent3d,
     transform::plugins::TransformSystems,
     window::{PrimaryWindow, WindowResized},
-};
-use crate::{
-    aurora_material::AuroraMaterial,
-    noise::{NoiseHandles, setup_noise_texture},
-    plugin::{AuroraTextureHandle, SkyboxMagnetTag, spawn_aurora_texture},
-    utils,
 };
 
 #[derive(Component)]

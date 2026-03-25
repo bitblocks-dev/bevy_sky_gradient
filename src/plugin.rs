@@ -1,10 +1,3 @@
-use bevy::{
-    asset::RenderAssetUsages,
-    camera::{RenderTarget, visibility::RenderLayers},
-    image::ImageSampler,
-    prelude::*,
-    render::render_resource::{Extent3d, TextureDimension, TextureFormat, TextureUsages},
-};
 use crate::{
     ambient_driver::AmbientDriverPlugin,
     aurora::AuroraPlugin,
@@ -18,6 +11,13 @@ use crate::{
     sky_texture::{SkyTexturePlugin, SkyTexturePluginSettings},
     sun::SunDriverPlugin,
     utils,
+};
+use bevy::{
+    asset::RenderAssetUsages,
+    camera::{RenderTarget, visibility::RenderLayers},
+    image::ImageSampler,
+    prelude::*,
+    render::render_resource::{Extent3d, TextureDimension, TextureFormat, TextureUsages},
 };
 
 #[derive(Clone, Resource)]
