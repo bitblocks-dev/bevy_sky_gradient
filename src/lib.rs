@@ -3,6 +3,7 @@ pub mod assets;
 pub mod aurora;
 pub mod aurora_material;
 pub mod bind_groups;
+pub mod clouds;
 pub mod cycle;
 pub mod gradient;
 pub mod gradient_driver;

@@ -1,5 +1,5 @@
 use bevy::prelude::*;
-use bevy_ingame_clock::InGameClock;
+use bevy_game_time::prelude::*;
 
 use crate::sky_material::FullSkyMaterial;
 
@@ -22,6 +22,7 @@ impl Default for SkyCyclePlugin {
 
 impl Plugin for SkyCyclePlugin {
     fn build(&self, app: &mut App) {
+        app.init_resource::<Time<InGame>>();
         app.insert_resource(self.sky_time.clone());
         app.insert_resource(self.sky_time_settings.clone());
         app.add_systems(Update, (update_sky_time, drive_night_time).chain());
@@ -30,29 +31,17 @@ impl Plugin for SkyCyclePlugin {
 
 fn update_sky_time(
     mut sky_time: ResMut<SkyTime>,
-    // time: Res<Time>,
-    ig_clock: Option<Res<InGameClock>>,
-    mut sky_time_settings: ResMut<SkyTimeSettings>,
+    time: Res<Time<InGame>>,
+    sky_time_settings: Res<SkyTimeSettings>,
 ) {
     if !sky_time.auto_tick {
         return;
     }
-    if let Some(clock) = ig_clock {
-        sky_time.time = clock.elapsed_seconds as f32 % clock.day_duration();
 
-        if sky_time_settings.day_time_sec == 1.0 {
-            let day_duration = clock.day_duration();
-            sky_time_settings.day_time_sec = day_duration * 0.45;
-            sky_time_settings.night_time_sec = day_duration * 0.45;
-            sky_time_settings.sunrise_time_sec = day_duration * 0.05;
-            sky_time_settings.sunset_time_sec = day_duration * 0.05;
-        }
+    sky_time.time += time.delta_secs();
+    if sky_time.time > sky_time_settings.total_time() {
+        sky_time.time -= sky_time_settings.total_time();
     }
-
-    // sky_time.time += time.delta_secs();
-    // if sky_time.time > sky_time_settings.total_time() {
-    //     sky_time.time -= sky_time_settings.total_time();
-    // }
 }
 
 // inform sky material the time!

@@ -41,7 +41,7 @@ version = "0.18"
 # ]
 
 [dependencies]
-bevy_ingame_clock = { git = "https://github.com/GuillaumeDelorme/bevy_ingame_clock", branch = "bevy-0.18-update" }
+bevy_game_time = { path = "../bevy_game_time" }
 thiserror = "2"
 
 # optional serialization
