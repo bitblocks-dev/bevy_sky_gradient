@@ -37,15 +37,9 @@ impl Default for AuroraSettings {
 }
 
 #[derive(Clone)]
+#[derive(Default)]
 pub struct AuroraPlugin {
     pub aurora_settings: AuroraSettings,
-}
-impl Default for AuroraPlugin {
-    fn default() -> Self {
-        Self {
-            aurora_settings: Default::default(),
-        }
-    }
 }
 
 impl Plugin for AuroraPlugin {

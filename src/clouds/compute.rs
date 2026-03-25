@@ -124,7 +124,7 @@ fn prepare_textures_bind_group(
 
 /// The compute shading pipeline
 ///
-/// Note that the compute shader is loaded in [`CloudsShaderPlugin`] so this resource depends on
+/// Note that the compute shader is loaded in [`crate::clouds::render::CloudsShaderPlugin`] so this resource depends on
 /// that plugin.
 #[derive(Resource)]
 struct CloudsPipeline {

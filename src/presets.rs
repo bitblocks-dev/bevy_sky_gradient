@@ -84,16 +84,14 @@ pub fn handle_apply_preset_events(
     mut sun_settings_optional: Option<ResMut<SunSettings>>,
 ) {
     for event in events.read() {
-        if let Some(new_sun_settings) = &event.sky_preset.sun_settings {
-            if let Some(current_sun_settings) = &mut sun_settings_optional {
+        if let Some(new_sun_settings) = &event.sky_preset.sun_settings
+            && let Some(current_sun_settings) = &mut sun_settings_optional {
                 **current_sun_settings = new_sun_settings.clone();
             }
-        }
-        if let Some(new_sky_colors_builder) = &event.sky_preset.sky_colors_builder {
-            if let Some(current_sky_colors_builder) = sky_colors_builder_optional.as_mut() {
+        if let Some(new_sky_colors_builder) = &event.sky_preset.sky_colors_builder
+            && let Some(current_sky_colors_builder) = sky_colors_builder_optional.as_mut() {
                 **current_sky_colors_builder = new_sky_colors_builder.clone();
             }
-        }
 
         if let Some(star_settings) = &event.sky_preset.stars {
             let skybox_material_handle = skyboxes

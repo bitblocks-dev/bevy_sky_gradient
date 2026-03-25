@@ -147,6 +147,7 @@ impl SkyPluginBuilder {
 }
 
 /// sets up all you need to show a gradient skybox
+#[derive(Default)]
 pub struct SkyPlugin {
     pub sky_builder: SkyPluginBuilder,
 }
@@ -217,13 +218,6 @@ impl Plugin for SkyPlugin {
     }
 }
 
-impl Default for SkyPlugin {
-    fn default() -> Self {
-        Self {
-            sky_builder: SkyPluginBuilder::default(),
-        }
-    }
-}
 
 /// attach to your main camera for the skybox to auto move to
 #[derive(Component, Default)]
@@ -368,12 +362,11 @@ fn sky_follow_camera(
             warn!("SkyPlugin: no camera with SkyBoxMagnetTag to transform to");
             *warned_once = true;
         }
-    } else if count > 1 {
-        if !*warned_once {
+    } else if count > 1
+        && !*warned_once {
             warn!("SkyPlugin: MORE THAN 1 CAMERA WITH SkyBoxMagnetTag");
             *warned_once = true;
         }
-    }
 }
 
 fn gradient_follow_camera(

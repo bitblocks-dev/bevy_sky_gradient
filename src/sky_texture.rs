@@ -42,17 +42,11 @@ impl Default for SkyTexturePluginSettings {
 }
 
 #[derive(Clone)]
+#[derive(Default)]
 pub struct SkyTexturePlugin {
     pub settings: SkyTexturePluginSettings,
 }
 
-impl Default for SkyTexturePlugin {
-    fn default() -> Self {
-        Self {
-            settings: SkyTexturePluginSettings::default(),
-        }
-    }
-}
 
 /// holds the quad where we render the sky
 #[derive(Component)]
